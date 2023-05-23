@@ -10,6 +10,8 @@ ENV AWS_REGION $aws_region
 
 WORKDIR /ansible/
 
+COPY private.pem .
+
 RUN apk add ansible
 
 RUN pip install boto3
