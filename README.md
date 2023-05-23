@@ -10,6 +10,7 @@ The underlying infrastructure has been setup which consists of:
 - ALB
 - Target Group
 - EC2 Instances
+    - That has tags `Name: Prod_Wordpress`
 - Security Groups
 - Mysql RDS Multi-AZ
 - Amazon EFS
