@@ -1,0 +1,11 @@
+---
+- name: Install WordPress, Nginx, and PHP-FPM
+  hosts: tag_Name_Prod_Wordpress
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+
+  roles:
+    - nginx
+    - php-fpm
+    - wordpress

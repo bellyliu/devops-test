@@ -1,0 +1,17 @@
+ARG aws_access_key
+ARG aws_secret_key
+ARG aws_region
+
+FROM python:3.10-alpine
+
+ENV AWS_ACCESS_KEY $aws_access_key
+ENV AWS_SECRET_KEY $aws_secret_key
+ENV AWS_REGION $aws_region
+
+WORKDIR /ansible/
+
+RUN apk add ansible
+
+RUN pip install boto3
+
+COPY . .

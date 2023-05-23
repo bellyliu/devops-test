@@ -1,0 +1,9 @@
+plugin: amazon.aws.aws_ec2
+aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') | default('my_aws_access_key', true) }}"
+aws_secret_key:  "{{ lookup('env', 'AWS_SECRET_KEY') | default('my_aws_secret_key', true) }}"
+regions:
+  - "{{ lookup('env', 'AWS_REGION') | default('ap-southeast-1', true) }}"
+
+keyed_groups:
+  - key: tags
+    prefix: tag

@@ -1,0 +1,21 @@
+---
+- name: Download WordPress
+  get_url: url=http://wordpress.org/wordpress-{{ wp_version }}.tar.gz dest=/home/ubuntu/wordpress-{{ wp_version }}.tar.gz
+
+- name: Extract archive
+  unarchive:
+    creates: /home/ubuntu/wordpress
+    src: /home/ubuntu/wordpress-{{ wp_version }}.tar.gz
+    dest: /home/ubuntu/wordpress
+
+- name: Fetch random salts for WordPress config
+  get_url:
+    url: https://api.wordpress.org/secret-key/1.1/salt/
+  register: "wp_salt"
+  become: no
+  become_method: sudo
+  changed_when: true
+  delegate_to: localhost
+
+- name: Copy WordPress config file
+  template: src=wp-config.php dest=/home/ubuntu/wordpress/
